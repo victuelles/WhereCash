@@ -96,7 +96,6 @@ body {
 
 .ui.menu:not(.vertical) .item>.button {
   margin-left: 0.5em;
-
 }
 
 /*chat comments*/
@@ -104,8 +103,4 @@ body {
 .ui.comments .comment .comments {
   padding-bottom: 0 !important;
   padding-left: 2em !important;
-}
-.ui.menu .item>img:not(.ui) {
- 
-    width: 4.5em;
 }
