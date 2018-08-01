@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div>
-          <ModalManager/>
+        <ModalManager/>
         <Switch>
           <Route exact path="/" component={HomePage} />
         </Switch>

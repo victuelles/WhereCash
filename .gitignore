@@ -6,6 +6,10 @@
 # testing
 /coverage
 
+#remove firebase api keys
+
+/src/app/config/firebase.js
+
 # production
 /build
 

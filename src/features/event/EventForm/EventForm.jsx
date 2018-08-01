@@ -7,7 +7,12 @@ import cuid from 'cuid';
 import Script from 'react-load-script';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { Segment, Form, Button, Grid, Header } from 'semantic-ui-react';
-import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan } from 'revalidate'
+import {
+  composeValidators,
+  combineValidators,
+  isRequired,
+  hasLengthGreaterThan
+} from 'revalidate';
 import { createEvent, updateEvent } from '../eventActions';
 import TextInput from '../../../app/common/form/TextInput';
 import TextArea from '../../../app/common/form/TextArea';
@@ -35,25 +40,27 @@ const actions = {
 };
 
 const category = [
-    {key: 'drinks', text: 'Drinks', value: 'drinks'},
-    {key: 'culture', text: 'Culture', value: 'culture'},
-    {key: 'film', text: 'Film', value: 'film'},
-    {key: 'food', text: 'Food', value: 'food'},
-    {key: 'music', text: 'Music', value: 'music'},
-    {key: 'travel', text: 'Travel', value: 'travel'},
+  { key: 'drinks', text: 'Drinks', value: 'drinks' },
+  { key: 'culture', text: 'Culture', value: 'culture' },
+  { key: 'film', text: 'Film', value: 'film' },
+  { key: 'food', text: 'Food', value: 'food' },
+  { key: 'music', text: 'Music', value: 'music' },
+  { key: 'travel', text: 'Travel', value: 'travel' }
 ];
 
 const validate = combineValidators({
-  title: isRequired({message: 'The event title is required'}),
-  category: isRequired({message: 'Please provide a category'}),
+  title: isRequired({ message: 'The event title is required' }),
+  category: isRequired({ message: 'Please provide a category' }),
   description: composeValidators(
-    isRequired({message: 'Please enter a description'}),
-    hasLengthGreaterThan(4)({message: 'Description needs to be at least 5 characters'})
+    isRequired({ message: 'Please enter a description' }),
+    hasLengthGreaterThan(4)({
+      message: 'Description needs to be at least 5 characters'
+    })
   )(),
   city: isRequired('city'),
   venue: isRequired('venue'),
   date: isRequired('date')
-})
+});
 
 class EventForm extends Component {
   state = {
@@ -91,7 +98,7 @@ class EventForm extends Component {
   };
 
   onFormSubmit = values => {
-    values.date = moment(values.date).format()
+    values.date = moment(values.date).format();
     values.venueLatLng = this.state.venueLatLng;
     if (this.props.initialValues.id) {
       this.props.updateEvent(values);
@@ -109,16 +116,16 @@ class EventForm extends Component {
   };
 
   render() {
-    const {invalid, submitting, pristine} = this.props;
+    const { invalid, submitting, pristine } = this.props;
     return (
       <Grid>
         <Script
-          url="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF5EOiEiSMLh5d7afJ7cdj-oum9zUdsmI&libraries=places"
+          url="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTN8X_q_xtMYCnacteF4ZQj0RKXodI080&libraries=places"
           onLoad={this.handleScriptLoaded}
         />
         <Grid.Column width={10}>
           <Segment>
-            <Header sub color='teal' content='Event Details'/>
+            <Header sub color="teal" content="Event Details" />
             <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
               <Field
                 name="title"
@@ -140,7 +147,7 @@ class EventForm extends Component {
                 rows={3}
                 placeholder="Tell us about your event"
               />
-              <Header sub color='teal' content='Event Location details'/>
+              <Header sub color="teal" content="Event Location details" />
               <Field
                 name="city"
                 type="text"
@@ -166,12 +173,16 @@ class EventForm extends Component {
                 name="date"
                 type="text"
                 component={DateInput}
-                dateFormat='YYYY-MM-DD HH:mm'
-                timeFormat='HH:mm'
+                dateFormat="YYYY-MM-DD HH:mm"
+                timeFormat="HH:mm"
                 showTimeSelect
                 placeholder="Date and time of event"
               />
-              <Button disabled={invalid || submitting || pristine} positive type="submit">
+              <Button
+                disabled={invalid || submitting || pristine}
+                positive
+                type="submit"
+              >
                 Submit
               </Button>
               <Button onClick={this.props.history.goBack} type="button">
@@ -186,5 +197,7 @@ class EventForm extends Component {
 }
 
 export default connect(mapState, actions)(
-  reduxForm({ form: 'eventForm', enableReinitialize: true, validate })(EventForm)
+  reduxForm({ form: 'eventForm', enableReinitialize: true, validate })(
+    EventForm
+  )
 );

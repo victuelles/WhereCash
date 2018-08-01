@@ -6,7 +6,7 @@ import RegisterModal from './RegisterModal'
 
 const modalLookup = {
   TestModal,
-   LoginModal,
+  LoginModal,
   RegisterModal
 }
 
