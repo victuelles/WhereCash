@@ -11,16 +11,16 @@ const HomePage = ({history}) => {
               src="/assets/logo.png"
               alt="logo"
             />
-            <div className="content">Re-vents</div>
+            <div className="content">Where.Cash</div>
           </h1>
-          <h2>Do whatever you want to do</h2>
+          <h2>We Accept Bitcoin Cash</h2>
           <div onClick={() => history.push('/events')} className="ui huge white inverted button">
             Get Started
             <i className="right arrow icon" />
           </div>
         </div>
       </div>
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center',display:'none' }}>
         Icons made by{' '}
         <a href="http://www.freepik.com" title="Freepik">
           Freepik
